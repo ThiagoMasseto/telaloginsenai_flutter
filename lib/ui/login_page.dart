@@ -21,7 +21,7 @@ class LoginPage extends StatelessWidget {
         body: Column(
           children: [
             SizedBox(height: 50,),
-            Text("Faça Login para Acessar o Sistema!", style: TextStyle(fontSize:20 ),),
+            Text("Faça Login para Acessar o Sistema!", style: TextStyle(fontSize:20, color: Colors.black87 ),),
             SizedBox(height: 60,),
             Text("Email:"),
             TextField(decoration: InputDecoration(hintText: "Insira seu email:"),),
