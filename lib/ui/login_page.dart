@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -19,8 +19,8 @@ class LoginPage extends StatelessWidget {
                 children: [
                   Image.asset(
                     'assets/images/imagem_senai.png',
-                    width: 180,
-                    height: 50,
+                    width: 181,
+                    height: 39,
                     fit: BoxFit.contain,
                   ),
                   const SizedBox(height: 16),
@@ -28,8 +28,8 @@ class LoginPage extends StatelessWidget {
                     'Login',
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
@@ -51,7 +51,7 @@ class LoginPage extends StatelessWidget {
                     children: [
                       const SizedBox(height: 8),
                       const Text(
-                        'Fa�a Login para Acessar o Sistema!',
+                        'Faça Login para Acessar o Sistema!',
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w600,
