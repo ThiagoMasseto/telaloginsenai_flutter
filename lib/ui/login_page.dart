@@ -1,5 +1,6 @@
 ﻿import 'package:flutter/material.dart';
 import 'package:telaloginsenai_flutter/ui/register_page.dart';
+import 'package:telaloginsenai_flutter/ui/recover_password_page.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -169,7 +170,13 @@ class LoginPage extends StatelessWidget {
                             ),
                           ),
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (_) => const RecoverPasswordPage(),
+                                ),
+                              );
+                            },
                             child: const Text(
                               'Esqueceu a senha?',
                               style: TextStyle(

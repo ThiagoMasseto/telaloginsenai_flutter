@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:telaloginsenai_flutter/main.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});
@@ -114,7 +115,13 @@ class RegisterPage extends StatelessWidget {
                         width: double.infinity,
                         height: 52,
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                builder: (_) => const SplashPage(),
+                              ),
+                            );
+                          },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.black,
                             shape: RoundedRectangleBorder(
