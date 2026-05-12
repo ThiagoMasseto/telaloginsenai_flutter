@@ -1,4 +1,5 @@
 ﻿import 'package:flutter/material.dart';
+import 'package:telaloginsenai_flutter/ui/register_page.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -152,7 +153,13 @@ class LoginPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (_) => const RegisterPage(),
+                                ),
+                              );
+                            },
                             child: const Text(
                               'Cadastre-se',
                               style: TextStyle(
