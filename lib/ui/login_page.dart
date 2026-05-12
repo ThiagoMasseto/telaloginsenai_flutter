@@ -2,8 +2,15 @@
 import 'package:telaloginsenai_flutter/ui/register_page.dart';
 import 'package:telaloginsenai_flutter/ui/recover_password_page.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -43,151 +50,169 @@ class LoginPage extends StatelessWidget {
                 color: Colors.white,
                 padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 28),
                 child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(height: 8),
-                      const Text(
-                        'Faça Login para Acessar o Sistema!',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black87,
-                        ),
-                      ),
-                      const SizedBox(height: 32),
-                      const Text(
-                        'Email:',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black87,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          hintText: 'Insira seu email:',
-                          hintStyle: const TextStyle(color: Colors.black38),
-                          filled: true,
-                          fillColor: Colors.white,
-                          contentPadding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 16,
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(height: 8),
+                        const Text(
+                          'Faça Login para Acessar o Sistema!',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black87,
                           ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            borderSide: const BorderSide(
-                              color: Colors.deepOrange,
-                              width: 1.5,
+                        ),
+                        const SizedBox(height: 32),
+                        const Text(
+                          'Email:',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black87,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        TextFormField(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Email é obrigatório';
+                            }
+                            if (!value.contains('@')) {
+                              return 'Email deve conter @';
+                            }
+                            return null;
+                          },
+                          decoration: InputDecoration(
+                            hintText: 'Insira seu email:',
+                            hintStyle: const TextStyle(color: Colors.black38),
+                            filled: true,
+                            fillColor: Colors.white,
+                            contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 16,
+                              vertical: 16,
                             ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            borderSide: const BorderSide(
-                              color: Colors.deepOrange,
-                              width: 2,
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      const Text(
-                        'Senha:',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black87,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      TextFormField(
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          hintText: 'Insira sua senha:',
-                          hintStyle: const TextStyle(color: Colors.black38),
-                          filled: true,
-                          fillColor: const Color(0xFFF2F2F2),
-                          contentPadding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                            vertical: 16,
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            borderSide: const BorderSide(
-                              color: Colors.transparent,
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            borderSide: const BorderSide(
-                              color: Colors.black26,
-                              width: 1.5,
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 28),
-                      SizedBox(
-                        width: double.infinity,
-                        height: 52,
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.black,
-                            shape: RoundedRectangleBorder(
+                            enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
+                              borderSide: const BorderSide(
+                                color: Colors.deepOrange,
+                                width: 1.5,
+                              ),
                             ),
-                          ),
-                          child: const Text(
-                            'Entrar',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: const BorderSide(
+                                color: Colors.deepOrange,
+                                width: 2,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 16),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          TextButton(
+                        const SizedBox(height: 20),
+                        const Text(
+                          'Senha:',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black87,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        TextFormField(
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            hintText: 'Insira sua senha:',
+                            hintStyle: const TextStyle(color: Colors.black38),
+                            filled: true,
+                            fillColor: const Color(0xFFF2F2F2),
+                            contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 16,
+                              vertical: 16,
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: const BorderSide(
+                                color: Colors.transparent,
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: const BorderSide(
+                                color: Colors.black26,
+                                width: 1.5,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 28),
+                        SizedBox(
+                          width: double.infinity,
+                          height: 52,
+                          child: ElevatedButton(
                             onPressed: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (_) => const RegisterPage(),
-                                ),
-                              );
+                              if (_formKey.currentState?.validate() ?? false) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(content: Text('Email válido!')),
+                                );
+                              }
                             },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.black,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                            ),
                             child: const Text(
-                              'Cadastre-se',
+                              'Entrar',
                               style: TextStyle(
-                                color: Color(0xFF011E83),
+                                color: Colors.white,
+                                fontSize: 16,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
                           ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (_) => const RecoverPasswordPage(),
+                        ),
+                        const SizedBox(height: 16),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (_) => const RegisterPage(),
+                                  ),
+                                );
+                              },
+                              child: const Text(
+                                'Cadastre-se',
+                                style: TextStyle(
+                                  color: Color(0xFF011E83),
+                                  fontWeight: FontWeight.w600,
                                 ),
-                              );
-                            },
-                            child: const Text(
-                              'Esqueceu a senha?',
-                              style: TextStyle(
-                                color: Color(0xFF011E83),
-                                fontWeight: FontWeight.w600,
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (_) => const RecoverPasswordPage(),
+                                  ),
+                                );
+                              },
+                              child: const Text(
+                                'Esqueceu a senha?',
+                                style: TextStyle(
+                                  color: Color(0xFF011E83),
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -198,3 +223,4 @@ class LoginPage extends StatelessWidget {
     );
   }
 }
+

@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:telaloginsenai_flutter/main.dart';
 
-class RecoverPasswordPage extends StatelessWidget {
+class RecoverPasswordPage extends StatefulWidget {
   const RecoverPasswordPage({super.key});
+
+  @override
+  State<RecoverPasswordPage> createState() => _RecoverPasswordPageState();
+}
+
+class _RecoverPasswordPageState extends State<RecoverPasswordPage> {
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -41,81 +48,95 @@ class RecoverPasswordPage extends StatelessWidget {
                 width: double.infinity,
                 color: Colors.white,
                 padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 28),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 20),
-                    const Text(
-                      'Insira seu e-mail para recuperar a senha!',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.black87,
-                      ),
-                    ),
-                    const SizedBox(height: 28),
-                    const Text(
-                      'Email:',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black87,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    TextFormField(
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
-                        hintText: 'Insira seu email:',
-                        hintStyle: const TextStyle(color: Colors.black38),
-                        filled: true,
-                        fillColor: const Color(0xFFF2F2F2),
-                        contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 16,
-                          vertical: 16,
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: const BorderSide(color: Colors.transparent),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: const BorderSide(
-                            color: Color(0xFF0B2D7B),
-                            width: 1.5,
-                          ),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 20),
+                      const Text(
+                        'Insira seu e-mail para recuperar a senha!',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black87,
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 32),
-                    SizedBox(
-                      width: double.infinity,
-                      height: 52,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(
-                              builder: (_) => const SplashPage(),
-                            ),
-                          );
+                      const SizedBox(height: 28),
+                      const Text(
+                        'Email:',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black87,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      TextFormField(
+                        keyboardType: TextInputType.emailAddress,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Email é obrigatório';
+                          }
+                          if (!value.contains('@')) {
+                            return 'Email deve conter @';
+                          }
+                          return null;
                         },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.black,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
+                        decoration: InputDecoration(
+                          hintText: 'Insira seu email:',
+                          hintStyle: const TextStyle(color: Colors.black38),
+                          filled: true,
+                          fillColor: const Color(0xFFF2F2F2),
+                          contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                            vertical: 16,
                           ),
-                        ),
-                        child: const Text(
-                          'Recuperar senha',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: const BorderSide(color: Colors.transparent),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: const BorderSide(
+                              color: Color(0xFF0B2D7B),
+                              width: 1.5,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                      const SizedBox(height: 32),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 52,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            if (_formKey.currentState?.validate() ?? false) {
+                              Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                  builder: (_) => const SplashPage(),
+                                ),
+                              );
+                            }
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.black,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                          child: const Text(
+                            'Recuperar senha',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
