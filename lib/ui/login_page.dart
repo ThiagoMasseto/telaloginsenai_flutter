@@ -38,12 +38,7 @@ class LoginPage extends StatelessWidget {
             Expanded(
               child: Container(
                 width: double.infinity,
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.vertical(
-                    top: Radius.circular(32),
-                  ),
-                ),
+                color: Colors.white,
                 padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 28),
                 child: SingleChildScrollView(
                   child: Column(
@@ -145,6 +140,7 @@ class LoginPage extends StatelessWidget {
                           child: const Text(
                             'Entrar',
                             style: TextStyle(
+                              color: Colors.white,
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
                             ),
@@ -160,7 +156,7 @@ class LoginPage extends StatelessWidget {
                             child: const Text(
                               'Cadastre-se',
                               style: TextStyle(
-                                color: Colors.blueAccent,
+                                color: Color(0xFF011E83),
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -170,7 +166,7 @@ class LoginPage extends StatelessWidget {
                             child: const Text(
                               'Esqueceu a senha?',
                               style: TextStyle(
-                                color: Colors.blueAccent,
+                                color: Color(0xFF011E83),
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
